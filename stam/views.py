@@ -6,6 +6,9 @@ from django.views.generic import (ListView,
                                   UpdateView,
                                   CreateView)
 from .models import Announcement
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Announcement
+from .forms import AnnouncementForm
 
 class AnnouncementListView(ListView):
     model = Announcement
@@ -24,15 +27,9 @@ class AnnouncementDetailView(DetailView):
     context_object_name = 'Announcement'
 
 
-class AnnouncementUpdateView(UpdateView):
-    model = Announcement
-    template_name = 'update.html'
-    fields = '__all__'
-    success_url = reverse_lazy('Announcement:list')
-
-
-class AnnouncementDeleteView(DeleteView):
-    model = Announcement
-    template_name = 'delete.html'
-    context_object_name = 'Announcement'
-    success_url = reverse_lazy('Announcement:list')
+def delete_announcement(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk)
+    if request.method == 'POST':
+        announcement.delete()
+        return redirect('announcement_list')
+    return render(request, 'announcement/announcement_confirm_delete.html', {'announcement': announcement})

@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Announcement</title>
+</head>
+<body>
+    <h1>Delete "{{ announcement.title }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm">
+    </form>
+    <a href="{% url 'announcement_detail' announcement.pk %}">Cancel</a>
+</body>
+</html>
