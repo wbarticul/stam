@@ -17,9 +17,9 @@ class AnnouncementListView(ListView):
 
 class AnnouncementCreateView(CreateView):
     model = Announcement
+    form_class = AnnouncementForm
     template_name = 'create.html'
     success_url = reverse_lazy('Announcement:list')
-    fields = ('name', 'image', 'category')
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
