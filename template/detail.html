@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="mx-auto">
+  <h1 class="text-center">{{ announcement.title }}</h1>
+  <p class="text-center fw-light">Uploaded on: {{announcement.created_at}}</p>
+    <p class="text-center">
+      <span><a href="{% url 'announcement:update' announcement.id %}" class="text-primary px-2">Update</a></span>
+      <span><a href="{% url 'announcement:delete' announcement.id %}" class="text-danger px-2">Delete</a></span>
+    </p>
+</div>
+<div class="row pb-5">
+  <div class="col-md-8">
+    <img src="{{announcement.image.url}}" alt="" width="100%" />
+  </div>
+  <div class="col-md-4">
+    <h4>More about this announcement:</h4>
+    <ul class="list-group list-group-horizontal-lg list-unstyled py-4">
+      <li><a class="btn btn-sm list-group-item list-group-item-primary">{{announcement.category}}</a></li>
+    </ul>
+    <p>{{ announcement.name }}</p>
+  </div>
+</div>
+
+{% endblock body %}
