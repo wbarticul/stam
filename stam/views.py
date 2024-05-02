@@ -7,13 +7,13 @@ from django.views.generic import (ListView,
                                   CreateView)
 from .models import Announcement
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Announcement
+
 from .forms import AnnouncementForm
 
 class AnnouncementListView(ListView):
     model = Announcement
     template_name = 'list.html'
-    context_object_name = 'Announcement'
+    context_object_name = 'announcements'
 
 class AnnouncementCreateView(CreateView):
     model = Announcement

@@ -11,6 +11,7 @@
     <ul>
         {% for announcement in announcements %}
             <li>{{ announcement.title }} - {{ announcement.description }}</li>
+            <img src="{{ announcement.photo}}" alt="">
         {% endfor %}
     </ul>
 </body>
